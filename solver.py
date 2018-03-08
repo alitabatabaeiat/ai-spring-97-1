@@ -5,6 +5,8 @@ import copy
 # depth-limited dfs
 def dls_solver(maze, limit):
     if limit == 0:
+        if maze.start == maze.goal:
+            return [maze.start]
         return []
 
     frontier = []
@@ -19,6 +21,7 @@ def dls_solver(maze, limit):
         node = frontier[-1]
         frontier = delete_last_element(frontier)
         if node.cell == maze.goal: # reach the Goal
+            explored.append(node.cell)
             found = True
             break
 
@@ -31,16 +34,24 @@ def dls_solver(maze, limit):
         num = add_neighbors_to_frontier(frontier, explored, neighbors, node)
         if num > 0:
             explored.append(node.cell) # list of explored cells on a current path from start
-        elif num == 0 and explored and frontier:
-            if explored[-1] != frontier[-1].parent.cell:
+        elif num == 0:
+            while explored and frontier:
+                if explored[-1] == frontier[-1].parent.cell:
+                    break
                 explored = delete_last_element(explored)
 
     if found:
-        return node.getPath()
+        return explored
     return []
 
 
 def iterative_dfs_solver(maze):
+    depth = 0
+    while True:
+        path = dls_solver(maze, depth)
+        if path:
+            return path
+        depth += 1
     return []
 
 
@@ -57,18 +68,24 @@ def dfs_solver(maze):
         node = frontier[-1]
         frontier = delete_last_element(frontier)
         if node.cell == maze.goal: # reach the Goal
+            explored.append(node.cell)
             found = True
             break
         neighbors = maze.get_neighbors(node.cell) # list of cells
+        # print('----')
+        # print(node)
+        # print('&&&&')
+        # print(neighbors)
         num = add_neighbors_to_frontier(frontier, explored, neighbors, node)
         if num > 0:
             explored.append(node.cell) # list of explored cells on a current path from start
-        elif num == 0 and explored and frontier:
-            if explored[-1] != frontier[-1].parent.cell:
+        elif num == 0:
+            while explored and frontier:
+                if explored[-1] == frontier[-1].parent.cell:
+                    break
                 explored = delete_last_element(explored)
-
     if found:
-        return node.getPath()
+        return explored
     return []
 
 
