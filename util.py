@@ -7,6 +7,13 @@ def delete_first_element(frontier):
         frontier = frontier[1:]
     return frontier
 
+def delete_last_element(frontier):
+    if len(frontier) == 1:
+        frontier = []
+    else:
+        frontier = frontier[:-1]
+    return frontier
+
 def add_neighbors_to_frontier(frontier, explored, neighbors, node):
     for n in neighbors:
         if n not in explored:
