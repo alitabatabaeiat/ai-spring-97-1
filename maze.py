@@ -198,8 +198,8 @@ if __name__ == "__main__":
     m.setup_maze()
     d = Displayer(m)
 
-    print(">> Testing BFS solver...")
-    bfs_path = bfs_solver(m)
+    # print(">> Testing BFS solver...")
+    # bfs_path = bfs_solver(m)
 
     """   UNCOMMENT TO DISABLE IDFS
     print(">> Testing Iterative DFS solver...")
@@ -215,19 +215,19 @@ if __name__ == "__main__":
         print ("Iterative DFS answer is invalid: " + e.message)
         UNCOMMENT TO DISABLE IDFS """
 
-    """   UNCOMMENT TO DISABLE BFS
+    # """   UNCOMMENT TO DISABLE BFS
     print(">> Testing BFS solver...")
     bfs_path = bfs_solver(m)
     try:
         validate_answer(m, bfs_path)  # m.goal in bfs_path:
         print(("BFS solved maze. cost: ", len(bfs_path), "cells visited"))
         print ("Display BFS solution? [y/n]")
-        display_command =eval(input())
+        display_command = eval(input())
         if "y" in display_command:
             d.draw_path(bfs_path)
     except AssertionError as e:
         print(("BFS answer is invalid: " + e.message))
-    UNCOMMENT TO DISABLE BFS """
+    # UNCOMMENT TO DISABLE BFS """
 
     """  UNCOMMENT TO DISABLE DFS
     print(">> Testing DFS solver...")

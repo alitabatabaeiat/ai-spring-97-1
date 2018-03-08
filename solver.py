@@ -16,7 +16,8 @@ def dfs_solver(maze):
 
 
 def bfs_solver(maze):
-    frontier = explored = []
+    frontier = []
+    explored = []
     start = Node(state = maze.start, parent = None, path_cost = 0);
     frontier.append(start)
     found = False
@@ -26,8 +27,6 @@ def bfs_solver(maze):
             break
         node = frontier[0]
         frontier = delete_first_element(frontier)
-        print('--')
-        print(node)
         if node.cell == maze.goal:# reach the Goal
             found = True
             break
@@ -35,9 +34,8 @@ def bfs_solver(maze):
         neighbors = maze.get_neighbors(node.cell) # list of cells
         add_neighbors_to_frontier(frontier, explored, neighbors, node)
 
-    # path = []
-    # if found:
-    #     path = getPath(node)
+    if found:
+        return node.getPath()
     return []
 
 
