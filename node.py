@@ -6,7 +6,7 @@ class Node:
 
     def __str__(self):
         val = 'cell = (%d, %d)\n' % self.cell
-        if (self.parent_cell is not None):
+        if (self.parent is not None):
             val += 'parent_cell = (%d, %d)\n' % self.parent.cell
         else:
             val += 'No parent\n'
