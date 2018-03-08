@@ -198,8 +198,8 @@ if __name__ == "__main__":
     m.setup_maze()
     d = Displayer(m)
 
-    # print(">> Testing BFS solver...")
-    # bfs_path = bfs_solver(m)
+    # print(">> Testing DFS solver...")
+    # dfs_path = dfs_solver(m)
 
     """   UNCOMMENT TO DISABLE IDFS
     print(">> Testing Iterative DFS solver...")
@@ -208,21 +208,21 @@ if __name__ == "__main__":
         validate_answer(m, idfs_path) #m.goal in bfs_path:
         print ("Iterative DFS solved maze. cost: ", len(idfs_path), "cells visited")
         print ("Display Iterative DFS solution? [y/n]")
-        display_command =input()
+        display_command = input()
         if "y" in display_command:
             d.draw_path(idfs_path)
     except AssertionError as e:
         print ("Iterative DFS answer is invalid: " + e.message)
         UNCOMMENT TO DISABLE IDFS """
 
-    # """   UNCOMMENT TO DISABLE BFS
+    """   UNCOMMENT TO DISABLE BFS
     print(">> Testing BFS solver...")
     bfs_path = bfs_solver(m)
     try:
         validate_answer(m, bfs_path)  # m.goal in bfs_path:
         print(("BFS solved maze. cost: ", len(bfs_path), "cells visited"))
         print ("Display BFS solution? [y/n]")
-        display_command = eval(input())
+        display_command = input()
         if "y" in display_command:
             d.draw_path(bfs_path)
     except AssertionError as e:
@@ -237,12 +237,12 @@ if __name__ == "__main__":
         print(("DFS solved maze. cost: ", len(dfs_path), "cells visited"))
 
         print ("Display DFS solution? [y/n]")
-        display_command =eval(input())
+        display_command = input()
         if "y" in display_command:
             d.draw_path(dfs_path)
     except AssertionError as e:
         print(("DFS answer is invalid: " + e.message))
-    UNCOMMENT TO DISABLE DFS """
+    # UNCOMMENT TO DISABLE DFS """
 
 
     """  UNCOMMENT TO DISABLE A*
@@ -253,7 +253,7 @@ if __name__ == "__main__":
         print(("A* solved maze. cost: ", len(astar_path), "cells visited"))
 
         print ("Display A* solution? [y/n]")
-        display_command =eval(input())
+        display_command = input()
         if "y" in display_command:
             d.draw_path(astar_path)
     except AssertionError as e:
