@@ -246,7 +246,7 @@ if __name__ == "__main__":
     # UNCOMMENT TO DISABLE DFS """
 
 
-    # """  UNCOMMENT TO DISABLE A*
+    """  UNCOMMENT TO DISABLE A*
     print(">> Testing A* solver...")
     astar_path = astar_solver(m)
     try:
