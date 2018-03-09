@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, cell = None, parent = None, path_cost = None, h = None):
+    def __init__(self, cell, parent, path_cost, h = None):
         self.cell = cell
         self.parent = parent
         self.path_cost = path_cost

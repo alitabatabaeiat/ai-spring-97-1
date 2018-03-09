@@ -198,9 +198,6 @@ if __name__ == "__main__":
     m.setup_maze()
     d = Displayer(m)
 
-    # print(">> Testing DFS solver...")
-    # dfs_path = dfs_solver(m)
-
     """   UNCOMMENT TO DISABLE IDFS
     print(">> Testing Iterative DFS solver...")
     idfs_path = iterative_dfs_solver(m)

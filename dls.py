@@ -18,3 +18,4 @@ class DLS(DFS):
             return self.maze.get_neighbors(self.node.cell)
         elif self.node.parent.path_cost < self.limit - 1:
             return self.maze.get_neighbors(self.node.cell)
+        return []
