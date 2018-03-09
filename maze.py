@@ -230,7 +230,7 @@ if __name__ == "__main__":
         print(("BFS answer is invalid: " + e.message))
     # UNCOMMENT TO DISABLE BFS """
 
-    # """  UNCOMMENT TO DISABLE DFS
+    """  UNCOMMENT TO DISABLE DFS
     print(">> Testing DFS solver...")
     dfs_path = dfs_solver(m)
     try:
@@ -246,7 +246,7 @@ if __name__ == "__main__":
     # UNCOMMENT TO DISABLE DFS """
 
 
-    """  UNCOMMENT TO DISABLE A*
+    # """  UNCOMMENT TO DISABLE A*
     print(">> Testing A* solver...")
     astar_path = astar_solver(m)
     try:
@@ -259,7 +259,7 @@ if __name__ == "__main__":
             d.draw_path(astar_path)
     except AssertionError as e:
         print(("A* answer is invalid: " + e.message))
-    UNCOMMENT TO DISABLE A* """
+    # UNCOMMENT TO DISABLE A* """
 
     print(" 1) Save maze to file")
     print(" 2) exit")

@@ -1,9 +1,12 @@
 class Node:
-    def __init__(self, state = None, parent = None, path_cost = None, h = None):
-        self.cell = state
+    def __init__(self, cell = None, parent = None, path_cost = None, h = None):
+        self.cell = cell
         self.parent = parent
         self.path_cost = path_cost
-        self.fn = path_cost + h
+        if h is not None:
+            self.fn = path_cost + h
+        else:
+            self.fn = None
 
     def __str__(self):
         val = 'cell = (%d, %d)\n' % self.cell

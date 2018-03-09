@@ -11,7 +11,7 @@ def dls_solver(maze, limit):
 
     frontier = []
     explored = []
-    start = Node(state = maze.start, parent = None, path_cost = 0);
+    start = Node(cell = maze.start, parent = None, path_cost = 0);
     frontier.append(start)
     found = False
     node = Node()
@@ -19,7 +19,7 @@ def dls_solver(maze, limit):
         if not frontier:
             break
         node = frontier[-1]
-        frontier = delete_last_element(frontier)
+        frontier = delete_element(frontier, -1)
         if node.cell == maze.goal: # reach the Goal
             explored.append(node.cell)
             found = True
@@ -38,7 +38,7 @@ def dls_solver(maze, limit):
             while explored and frontier:
                 if explored[-1] == frontier[-1].parent.cell:
                     break
-                explored = delete_last_element(explored)
+                explored = delete_element(explored, -1)
 
     if found:
         return explored
@@ -58,7 +58,7 @@ def iterative_dfs_solver(maze):
 def dfs_solver(maze):
     frontier = []
     explored = []
-    start = Node(state = maze.start, parent = None, path_cost = 0);
+    start = Node(cell = maze.start, parent = None, path_cost = 0);
     frontier.append(start)
     found = False
     node = Node()
@@ -66,16 +66,12 @@ def dfs_solver(maze):
         if not frontier:
             break
         node = frontier[-1]
-        frontier = delete_last_element(frontier)
+        frontier = delete_element(frontier, -1)
         if node.cell == maze.goal: # reach the Goal
             explored.append(node.cell)
             found = True
             break
         neighbors = maze.get_neighbors(node.cell) # list of cells
-        # print('----')
-        # print(node)
-        # print('&&&&')
-        # print(neighbors)
         num = add_neighbors_to_frontier(frontier, explored, neighbors, node)
         if num > 0:
             explored.append(node.cell) # list of explored cells on a current path from start
@@ -83,7 +79,7 @@ def dfs_solver(maze):
             while explored and frontier:
                 if explored[-1] == frontier[-1].parent.cell:
                     break
-                explored = delete_last_element(explored)
+                explored = delete_element(explored, -1)
     if found:
         return explored
     return []
@@ -92,7 +88,7 @@ def dfs_solver(maze):
 def bfs_solver(maze):
     frontier = []
     explored = []
-    start = Node(state = maze.start, parent = None, path_cost = 0);
+    start = Node(cell = maze.start, parent = None, path_cost = 0);
     frontier.append(start)
     found = False
     node = Node()
@@ -100,7 +96,7 @@ def bfs_solver(maze):
         if not frontier:
             break
         node = frontier[0]
-        frontier = delete_first_element(frontier)
+        frontier = delete_element(frontier, 0)
         if node.cell == maze.goal: # reach the Goal
             found = True
             break
@@ -114,8 +110,30 @@ def bfs_solver(maze):
 
 
 def astar_heuristic(maze, cell):
-    return 0
+    dx = abs(cell[0] - maze.goal[0])
+    dy = abs(cell[1] - maze.goal[1])
+    return dx + dy
 
 
 def astar_solver(maze):
+    frontier = []
+    explored = []
+    start = Node(cell = maze.start, parent = None, path_cost = 0, h = astar_heuristic(maze, maze.start));
+    frontier.append(start)
+    found = False
+    node = Node()
+    while True:
+        if not frontier:
+            break
+        (node, index) = pick_from_frontier(frontier)
+        frontier = delete_element(frontier, index)
+        if node.cell == maze.goal: # reach the Goal
+            found = True
+            break
+        explored.append(node.cell) # list of explored cells
+        neighbors = maze.get_neighbors(node.cell) # list of cells
+        add_neighbors_to_frontier(frontier, explored, neighbors, node, maze, astar_heuristic)
+
+    if found:
+        return node.getPath()
     return []
