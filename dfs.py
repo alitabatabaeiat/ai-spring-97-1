@@ -16,7 +16,12 @@ class DFS(Search):
             num = self.add_neighbors_to_frontier()
             self.update_explored(num)
 
-        return self.explored
+        return self.get_path()
+
+    def get_path(self):
+        if self.found:
+            return self.explored
+        return []
 
     def update_explored(self, num):
         if num > 0:
