@@ -7,7 +7,6 @@ class AStar(Search):
         while True:
             if not self.frontier:
                 break
-            print(self.node)
             index = self.pick_from_frontier()
             self.frontier = delete_element(self.frontier, index)
             if self.goal_test(): # reach the Goal
